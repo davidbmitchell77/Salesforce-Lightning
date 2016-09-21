@@ -1,0 +1,114 @@
+<aura:component implements="force:appHostable" controller="ExpenseController">
+    <aura:Handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <ltng:require styles="{!$Resource.SLDS202 + '/assets/styles/salesforce-lightning-design-system.css'}"/>
+    <aura:handler name="updateExpense" event="c:updateExpenseItem" action="{!c.updateEvent}" />
+    <aura:attribute name="expenses" type="Expense__c[]"/>
+    <aura:attribute name="newExpense" type="Expense__c"
+                    default="{ 'sobjectType': 'Expense__c',
+                             'Name': '',
+                             'Amount__c': 0,
+                             'Client__c': '', 
+                             'Date__c': '',
+                             'Reimbursed__c': false
+                             }"/>
+    <!-- If you registered a namespace, replace the previous aura:attribute tags with the following -->
+    <!-- <aura:attribute name="expenses" type="myNamespace.Expense__c[]"/> 
+  <aura:attribute name="newExpense" type="myNamespace__Expense__c"
+               default="{ 'sobjectType': 'myNamespace__Expense__c',
+                          'Name': '',
+                          'myNamespace__Amount__c': 0,
+                          'myNamespace__Client__c': '',
+                          'myNamespace__Date__c': '',
+                          'myNamespace__Reimbursed__c': false
+                         }"/> -->
+    <!-- Attributes for Expense Counters -->
+    <aura:attribute name="total" type="Double" default="0.00" />
+    <aura:attribute name="exp" type="Double" default="0" />
+    
+    <!-- Input Form using components -->
+    <div class="container">
+        <form class="slds-form--stacked">
+            <div class="slds-form-element slds-is-required">
+                <div class="slds-form-element__control">
+                    
+                    <!-- If you registered a namespace,
+            the attributes include your namespace.
+            For example, value="{!v.newExpense.myNamespace__Amount__c}" -->
+                    
+                    <ui:inputText aura:id="expname" label="Expense Name"
+                                  class="slds-input"
+                                  labelClass="slds-form-element__label"
+                                  value="{!v.newExpense.Name}"
+                                  required="true"/>
+                </div>
+            </div>
+            <div class="slds-form-element slds-is-required">
+                <div class="slds-form-element__control">
+                    <ui:inputNumber aura:id="amount" label="Amount"
+                                    class="slds-input"
+                                    labelClass="slds-form-element__label"
+                                    value="{!v.newExpense.Amount__c}"
+                                    placeholder="20.80" required="true"/>
+                </div>
+            </div>
+            <div class="slds-form-element">
+                <div class="slds-form-element__control">
+                    <ui:inputText aura:id="client" label="Client"
+                                  class="slds-input"
+                                  labelClass="slds-form-element__label"
+                                  value="{!v.newExpense.Client__c}"
+                                  placeholder="ABC Co."/>
+                </div>
+            </div>
+            <div class="slds-form-element">
+                <div class="slds-form-element__control">
+                    <ui:inputDateTime aura:id="expdate" label="Expense Date"
+                                      class="slds-input"
+                                      labelClass="slds-form-element__label"
+                                      value="{!v.newExpense.Date__c}"
+                                      displayDatePicker="true"/>
+                </div>
+            </div>
+            <div class="slds-form-element">
+                <ui:inputCheckbox aura:id="reimbursed" label="Reimbursed?"
+                                  class="slds-checkbox"
+                                  labelClass="slds-form-element__label"
+                                  value="{!v.newExpense.Reimbursed__c}"/>
+                <ui:button label="Submit" 
+                           class="slds-button slds-button--neutral"
+                           labelClass="label"
+                           press="{!c.createExpense}"/>
+            </div>
+        </form>
+    </div><!-- ./container-->
+    
+    <!-- Expense Counters -->
+    <div class="container slds-p-top--medium">
+        <div class="row">
+            <div class="slds-tile ">
+                <!-- Make the counter red if total amount is more than 100 -->
+                <div class="{!v.total >= 100 
+                            ? 'slds-notify slds-notify--toast slds-theme--error slds-theme--alert-texture' 
+                            : 'slds-notify slds-notify--toast slds-theme--alert-texture'}">
+                    <p class="slds-tile__title slds-truncate">Total Expenses</p>
+                    $<ui:outputNumber class="slds-truncate" value="{!v.total}" format=".00"/>
+                </div>
+            </div>
+            <div class="slds-tile ">
+                <div class="slds-notify slds-notify--toast slds-theme--alert-texture">
+                    <p class="slds-tile__title slds-truncate">No. of Expenses</p>
+                    <ui:outputNumber class="slds-truncate" value="{!v.exp}"/>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Display expense records -->
+    <div class="container slds-p-top--medium">
+        <div id="list" class="row">
+            <aura:iteration items="{!v.expenses}" var="expense">
+                <!--If you’re using a namespace, use myNamespace:expenseList instead-->
+                <c:expenseList expense="{!expense}"/>
+            </aura:iteration>
+        </div>
+    </div> 
+</aura:component>

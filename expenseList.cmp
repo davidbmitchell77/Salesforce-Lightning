@@ -1,0 +1,37 @@
+<aura:component >
+    <aura:attribute name="expense" type="Expense__c"/>
+    <aura:registerEvent name="updateExpense" type="c:updateExpenseItem"/>
+    <!-- Color the item blue if the expense is reimbursed -->
+    <div class="slds-card">
+    <!-- If you registered a namespace, 
+                use v.expense.myNamespace__Reimbursed__c == true instead. -->
+    <div class="{!v.expense.Reimbursed__c == true 
+                       ? 'slds-theme--success' : 'slds-theme--warning'}">
+          <header class="slds-card__header slds-grid grid--flex-spread">
+              <a aura:id="expense" href="{!'/' + v.expense.Id}">
+                  <h3>{!v.expense.Name}</h3>
+              </a>
+          </header>
+        
+       <section class="slds-card__body">
+           <!-- If you registered a namespace, 
+                use v.expense.myNamespace__Reimbursed__c instead. -->
+           
+          <div class="slds-tile slds-hint-parent">
+              <p class="slds-tile__title slds-truncate">Amount: 
+                  <ui:outputNumber value="{!v.expense.Amount__c}" format=".00"/>
+              </p>
+        <p class="slds-truncate">Client: 
+            <ui:outputText value="{!v.expense.Client__c}"/>
+        </p>
+        <p class="slds-truncate">Date:
+            <ui:outputDateTime value="{!v.expense.Date__c}" />
+        </p>
+        <p class="slds-truncate">Reimbursed?
+            <ui:inputCheckbox value="{!v.expense.Reimbursed__c}" click="{!c.update}"/>
+        </p>
+    </div>
+        </section>
+    </div>
+    </div>
+</aura:component>
