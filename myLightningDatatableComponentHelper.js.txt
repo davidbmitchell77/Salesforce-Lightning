@@ -1,9 +1,9 @@
 ({
-	getData : function(component)
+    getData : function(component)
     {
-		var action = component.get('c.getContacts');
+	var action = component.get('c.getContacts');
         action.setCallback(this, $A.getCallback(function(response)
-                           {
+                             {
                                var status = response.getState();
                                if (status === "SUCCESS")
                                {
@@ -17,5 +17,5 @@
                            }
         ));
         $A.enqueueAction(action);
-	},
+    },
 })
