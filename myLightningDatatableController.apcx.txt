@@ -1,0 +1,8 @@
+public class myLightningDatatableController {
+
+    @AuraEnabled
+    public static List<Contact> getContacts() {
+        List<Contact> contacts = [select Id, Name, Phone, Email from Contact order by Name limit 50];
+        return contacts;
+    }
+}
