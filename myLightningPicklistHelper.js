@@ -30,7 +30,7 @@
 
                 component.set('v.options', options);
             }
-            else if (status === "SUCCESS")
+            else if (status === "ERROR")
             {
                 options.push({
                     label: '-- Error -- ',
