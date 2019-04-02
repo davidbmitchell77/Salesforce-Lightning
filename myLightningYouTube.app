@@ -1,5 +1,5 @@
 <aura:application >
 
-    <dbm77:myLightningYouTube />
+    <c:myLightningYouTube />
 
 </aura:application>
