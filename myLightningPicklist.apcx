@@ -1,0 +1,22 @@
+public class myLightningPicklist
+{
+    @AuraEnabled
+    public static List<String> getPicklistValues(String objname, String fieldname)
+    {
+        List<String> result = new List<String>();
+
+        sObject sobj = Database.query('select Id, ' + fieldname + ' from ' + objname + ' limit 1');
+        Schema.sObjectType objType = sobj.getSObjectType();
+        Schema.DescribeSObjectResult objDescribe = objType.getDescribe();
+
+        Map<String, Schema.SObjectField> fieldMap = objDescribe.fields.getMap();
+        List<Schema.PicklistEntry> picklistValues = fieldMap.get(fieldname).getDescribe().getPicklistValues();
+
+        for (Schema.PicklistEntry ple : picklistValues)
+        {
+            result.add(ple.getValue());
+        }
+
+        return result;
+    }
+}
