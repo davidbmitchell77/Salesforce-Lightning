@@ -3,6 +3,7 @@
     <aura:attribute name="frameWidth" type="String" />
     <aura:attribute name="frameHeight" type="String" />
     <aura:attribute name="url" type="String" />
+
     <aura:handler name="init" value="{!this}" action="{!c.init}" />
 
     <iframe width="{!v.frameWidth}"
