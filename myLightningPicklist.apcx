@@ -3,21 +3,23 @@ public class myLightningPickList
     @AuraEnabled
     public static List<String> getPicklistValues(String objname, String fieldname)
     {
-      List<String> results = new List<String>();
-      List<String> objnames = new List<String>{objname};
+        List<String> results = new List<String>();
+        List<String> objnames = new List<String>{objname};
 
-      List<Schema.DescribeSobjectResult> objects = Schema.describeSObjects(objnames);
-      for(Schema.DescribeSobjectResult obj : objects)
-	  {
-         for (Schema.PicklistEntry ple : obj.fields.getMap().get(fieldname).getDescribe().getPicklistValues())
-		 {
-            if (ple.isActive())
-			{
-			    results.add(ple.getValue());
-			}
-         }
-      }
+        objnames.add(objname);
 
-      return results;
+        List<Schema.DescribeSobjectResult> objects = Schema.describeSObjects(objnames);
+        for(Schema.DescribeSobjectResult obj : objects)
+	{
+            for (Schema.PicklistEntry ple : obj.fields.getMap().get(fieldname).getDescribe().getPicklistValues())
+            {
+                if (ple.isActive())
+                {
+		    results.add(ple.getValue());
+                }
+            }
+        }
+
+        return results;
     }
 }
