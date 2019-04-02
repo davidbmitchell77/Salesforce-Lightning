@@ -1,9 +1,9 @@
 public class myLightningPickList
 {
     @AuraEnabled
-    public static List<String> getPicklistValues(String objname, String fieldname)
+    public static Map<String, String> getPicklistValues(String objname, String fieldname)
     {
-        List<String> results = new List<String>();
+        Map<String, String> results = new Map<String, String>();
         List<String> objnames = new List<String>{objname};
 
         objnames.add(objname);
@@ -15,7 +15,7 @@ public class myLightningPickList
             {
                 if (ple.isActive())
                 {
-                    results.add(ple.getValue());
+                    results.put(ple.getLabel(), ple.getValue());
                 }
             }
         }
