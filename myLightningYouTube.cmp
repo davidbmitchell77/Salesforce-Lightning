@@ -1,0 +1,15 @@
+<aura:component >
+
+    <aura:attribute name="frameWidth" type="String" />
+    <aura:attribute name="frameHeight" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.init}" />
+
+	<iframe width="{!v.frameWidth}"
+            height="{!v.frameHeight}"
+            src="https://www.youtube.com/embed/Z2BXbIbY7n8"
+            frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen="false">
+    </iframe>
+
+</aura:component>
