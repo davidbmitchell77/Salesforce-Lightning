@@ -1,7 +1,7 @@
 ({
     getPicklistValues : function(component, fieldname)
     {
-	var action = component.get('c.getPicklistValues');
+        var action = component.get('c.getPicklistValues');
         action.setParams({
             "objname": component.get('v.objname'),
             "fieldname": component.get('v.fieldname')
@@ -36,15 +36,12 @@
             });
 
             var receivedValues = response.getReturnValue();
-            if (receivedValues != undefined && receivedValues.length > 0)
+            for (var key in receivedValues)
             {
-            	for (var i=0; i<receivedValues.length; i++)
-                {
-                    options.push({
-                    	label: receivedValues[i],
-                    	value: receivedValues[i]
-                 	});
-                }
+                options.push({
+                    label: key,
+                    value: receivedValues[key] 
+                });
             }
 
             component.set('v.options', options);
