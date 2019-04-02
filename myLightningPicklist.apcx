@@ -6,8 +6,6 @@ public class myLightningPickList
         Map<String, String> results = new Map<String, String>();
         List<String> objnames = new List<String>{objname};
 
-        objnames.add(objname);
-
         List<Schema.DescribeSobjectResult> objects = Schema.describeSObjects(objnames);
         for(Schema.DescribeSobjectResult obj : objects)
         {
