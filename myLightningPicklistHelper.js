@@ -11,40 +11,35 @@
 
         action.setCallback(this, function(response)
         {
-            var defaultLabel = ''
-            var defaultValue = '';
-
-            switch(response.getState())
-            {
-                case 'SUCCESS':
-                    defaultLabel = '-- None --';
-                    defaultValue = '';
-                    break;
-                case 'ERROR':
-                    defaultLabel = '-- Error --';
-                    defaultValue = '';
-                    console.error(response.getError());
-                    break;
-                default:
-                    defaultLabel = '-- None --';
-                    defaultValue = '';
-            }
-
-            options.push({
-                label: defaultLabel,
-                value: defaultValue
-            });
-
-            var receivedValues = response.getReturnValue();
-            for (var key in receivedValues)
+            var status = response.getState();
+            if (status === "SUCCESS")
             {
                 options.push({
-                    label: key,
-                    value: receivedValues[key] 
+                    label: '-- None -- ',
+                    value: ''
                 });
-            }
 
-            component.set('v.options', options);
+                var receivedValues = response.getReturnValue();
+                for (var key in receivedValues)
+                {
+                    options.push({
+                        label: key,
+                        value: receivedValues[key] 
+                    });
+                }
+
+                component.set('v.options', options);
+            }
+            else if (status === "SUCCESS")
+            {
+                options.push({
+                    label: '-- Error -- ',
+                    value: ''
+                });
+
+                var errors = response.getError();
+                console.error(errors);
+            }
         });
 
         $A.enqueueAction(action);
