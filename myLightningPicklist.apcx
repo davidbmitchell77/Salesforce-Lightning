@@ -10,12 +10,12 @@ public class myLightningPickList
 
         List<Schema.DescribeSobjectResult> objects = Schema.describeSObjects(objnames);
         for(Schema.DescribeSobjectResult obj : objects)
-	{
+        {
             for (Schema.PicklistEntry ple : obj.fields.getMap().get(fieldname).getDescribe().getPicklistValues())
             {
                 if (ple.isActive())
                 {
-		    results.add(ple.getValue());
+                    results.add(ple.getValue());
                 }
             }
         }
