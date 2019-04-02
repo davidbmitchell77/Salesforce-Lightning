@@ -7,10 +7,10 @@
             "fieldname": component.get('v.fieldname')
         });
 
-        var options = [];
-
         action.setCallback(this, function(response)
         {
+            var options = [];
+
             var status = response.getState();
             if (status === "SUCCESS")
             {
@@ -36,6 +36,8 @@
                     label: '-- Error -- ',
                     value: ''
                 });
+
+                component.set('v.options', options);
 
                 var errors = response.getError();
                 console.error(errors);
