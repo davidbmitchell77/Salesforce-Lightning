@@ -1,6 +1,6 @@
 ({
-	init : function(component, event, helper)
+    init : function(component, event, helper)
     {
         document.title = 'My Contacts';	
-	},
+    },
 })
