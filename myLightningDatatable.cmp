@@ -4,6 +4,10 @@
     <aura:attribute name="columns" type="List" />
     <aura:handler name="init" value="{!this}" action="{!c.init}" />
     
-    <lightning:datatable data="{!v.contacts}" columns="{!v.columns}" keyField="Id" hideCheckboxColumn="false" />
+    <lightning:datatable data="{!v.contacts}"
+                         columns="{!v.columns}"
+                         keyField="Id"
+                         hideCheckboxColumn="false"
+                         />
     
 </aura:component>
