@@ -1,5 +1,7 @@
 <aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
 
+    <aura:handler name="init" value="{!this}" action="{c.init}" />
+
     <lightning:listView aura:id="listViewContacts"
                         objectApiName="Contact"
                         listName="MyContacts"
