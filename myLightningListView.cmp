@@ -1,0 +1,9 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+
+    <lightning:listView aura:id="listViewContacts"
+                        objectApiName="Contact"
+                        listName="MyContacts"
+                        rows="10"
+                        />
+
+</aura:component>
