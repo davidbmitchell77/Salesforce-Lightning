@@ -1,5 +1,5 @@
 ({
-	next : function(component, event, helper)
+    next : function(component, event, helper)
     {
         var tabId = component.get('v.selectedTabId');
         switch(tabId)
@@ -16,7 +16,7 @@
         }
         component.set('v.selectedTabId', tabId);
 	},
-	back : function(component, event, helper)
+    back : function(component, event, helper)
     {
         var tabId = component.get('v.selectedTabId');
         switch(tabId)
