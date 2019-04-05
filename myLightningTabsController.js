@@ -15,7 +15,7 @@
                 break;      
         }
         component.set('v.selectedTabId', tabId);
-	},
+    },
     back : function(component, event, helper)
     {
         var tabId = component.get('v.selectedTabId');
@@ -32,5 +32,5 @@
                 break;
         }
         component.set('v.selectedTabId', tabId);
-	},
+    },
 })
