@@ -4,14 +4,14 @@
         var tabId = component.get('v.selectedTabId');
         switch(tabId)
         {
-            case 'Tab1':
-                tabId = 'Tab2';
+            case 'tab1':
+                tabId = 'tab2';
                 break;
-            case 'Tab2':
-                tabId = 'Tab3';
+            case 'tab2':
+                tabId = 'tab3';
                 break;
-            case 'Tab3':
-                tabId = 'Tab4';
+            case 'tab3':
+                tabId = 'tab4';
                 break;      
         }
         component.set('v.selectedTabId', tabId);
@@ -21,14 +21,14 @@
         var tabId = component.get('v.selectedTabId');
         switch(tabId)
         {
-            case 'Tab4':
-                tabId = 'Tab3';
+            case 'tab4':
+                tabId = 'tab3';
                 break;
-            case 'Tab3':
-                tabId = 'Tab2';
+            case 'tab3':
+                tabId = 'tab2';
                 break;
-            case 'Tab2':
-                tabId = 'Tab1';
+            case 'tab2':
+                tabId = 'tab1';
                 break;
         }
         component.set('v.selectedTabId', tabId);
