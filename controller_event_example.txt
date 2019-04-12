@@ -1,4 +1,4 @@
-<!-- -------------------------------------------------------- -->
+﻿<!-- -------------------------------------------------------- -->
 <!-- Parent Component: products.cmp                           -->
 <!-- Parent component controller: productsController.js       -->
 <!-- -------------------------------------------------------- -->
@@ -59,7 +59,7 @@
             "products" : products
         });
 
-       event.fire();
+        event.fire();
     },
 })
 
@@ -67,7 +67,7 @@
 <!-- -------------------------------------------------------- -->
 <!-- Component Event: productAddItem.evt                      -->
 <!-- -------------------------------------------------------- -->
-<aura:event type="COMPONENT">
+<aura:event type="COMPONENT" >
 
     <aura:attribute name="products" type="Products__c" />
 
