@@ -1,0 +1,74 @@
+<!-- -------------------------------------------------------- -->
+<!-- Parent Component: products.cmp                           -->
+<!-- Parent component controller: productsController.js       -->
+<!-- -------------------------------------------------------- -->
+<aura:component controller="myAuraEnabledControllerClassName" >
+
+    <aura:attribute name="products" type="Products__c[]" />
+    <aura:handler name="addProduct" event="c:productAddItem" action="{!c.addProduct}" />
+
+    <c:productForm />
+
+</aura:component>
+
+({
+    addProduct : function(component, event, helper)
+    {
+        var newProduct = event.getParam("products");
+
+        var request = component.get("c.saveProduct");
+        request.setCallback(this, function(response)
+        {
+            var state = response.getState();
+            if (component.isValid() && state === "SUCCESS")
+            {
+                component.set("v.products", response.getReturnValue());
+            }
+            else {
+                console.log('Request failed with state: "' + state + '".');
+            }
+        });
+
+        $A.enqueueAction(request);
+    },
+})
+
+
+<!-- -------------------------------------------------------- -->
+<!-- Child component: productForm.cmp                         -->
+<!-- Child component controller: productFormController.js     -->
+<!-- -------------------------------------------------------- -->
+<aura:component>
+
+    <aura:attribute name="products" type="Products__c" />
+    <aura:registerEvent name="addProduct" type="c:productAddItem" />
+
+    <!—component form here—>
+    <ui:button label="Add Product" press="{!c.buttonClicked}" />
+
+</aura:component>
+
+({
+    buttonClicked : function(component, event, helper)
+    {
+        var products = component.get("v.products");
+
+        var event = component.getEvent("addProduct");
+        event.setParams
+        ({
+            "products" : products
+        });
+
+       event.fire();
+    },
+})
+
+
+<!-- -------------------------------------------------------- -->
+<!-- Component Event: productAddItem.evt                      -->
+<!-- -------------------------------------------------------- -->
+<aura:event type="COMPONENT">
+
+    <aura:attribute name="products" type="Products__c" />
+
+</aura:event>
