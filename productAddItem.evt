@@ -1,3 +1,5 @@
 <aura:event type="COMPONENT">
-    <aura:attribute name="products" type="Products__c" />
+
+    <aura:attribute name="products" type="Products__c"/>
+
 </aura:event>
