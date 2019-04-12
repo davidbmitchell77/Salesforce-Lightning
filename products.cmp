@@ -1,0 +1,8 @@
+<aura:component>
+
+    <aura:attribute name="products" type="Products__c[]" />
+    <aura:handler name="addProduct" event="c:productAddItem" action="{!c.handleAddProduct}" />
+
+    <c:productForm />
+
+</aura:component>

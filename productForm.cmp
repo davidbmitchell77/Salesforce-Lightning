@@ -1,0 +1,9 @@
+<aura:component>
+
+    <aura:attribute name="products" type="Products__c" />
+    <aura:registerEvent name="addProduct" type="c:productAddItem" />
+
+    <!—component form here—>
+    <ui:button label="Add Product" press="{!c.clickAddProduct}" />
+
+</aura:component>
