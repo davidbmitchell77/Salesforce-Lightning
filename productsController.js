@@ -2,8 +2,8 @@
     handleAddProduct : function(component, event, helper)
     {
         var newProduct = event.getParam("products");
-        var request = component.get("c.saveProduct");
 
+        var request = component.get("c.saveProduct");
         request.setCallback(this, function(response)
         {
             var state = response.getState();
