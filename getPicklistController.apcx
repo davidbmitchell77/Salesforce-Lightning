@@ -1,0 +1,19 @@
+public with sharing class put_controller_name_here
+{
+    public static Map<String, String> getPicklistMap(String objectName, String fieldName)
+    {
+        Map<String, String> result = new Map<String, String>();
+        List<String> labels = new List<String>();
+        List<String> values = new List<String>();
+        List<String> objectTypeNames = new List<String>{ objectName };
+        List<Schema.DescribeSobjectResult> objdefs = Schema.describeSObjects(objectTypeNames);
+        for (Schema.DescribeSobjectResult o : objdefs) {
+            for (Schema.PicklistEntry ple : o.fields.getMap().get(fieldName).getDescribe().getPicklistValues()) {
+                if (ple.isActive()) {
+                    result.put(ple.getLabel()), ple.getValue());
+                }
+            }
+        }
+    }
+    return result;
+}
